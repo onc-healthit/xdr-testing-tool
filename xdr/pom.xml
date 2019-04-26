@@ -22,7 +22,7 @@
 
 	  <repository>
 	    <id>local-maven-repo</id>
-	    <url>file:./local-maven-repo</url>
+	    <url>file:../local-maven-repo</url>
 	  </repository>
 
 
