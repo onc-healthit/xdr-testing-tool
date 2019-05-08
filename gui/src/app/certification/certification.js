@@ -10,7 +10,7 @@ certMod.config(['$stateProvider',
         $stateProvider.state('certification', {
             url: '/certification',
 				params: {
-					paramCri: null
+					paramsObj: null, paramCri: null
 				},
             abstract: true,
             views: {
@@ -201,8 +201,16 @@ certMod.config(['$stateProvider',
     }
 ]);
 
-certMod.controller('CertificationCriteriaCtrl', ['$scope', 'PropertiesFactory',
-    function($scope, PropertiesFactory) {
+certMod.controller('CertificationCriteriaCtrl', ['$scope','$stateParams','PropertiesFactory',
+    function($scope,$stateParams,PropertiesFactory) {
+
+    $scope.paramsObj =  $stateParams.paramsObj;
+$scope.backTo = null;
+if ($stateParams.paramsObj !=null){
+$scope.parmobj = "{paramCri:{'backToCriteria':"+$scope.paramsObj.backToCriteria+",'backToOption':"+$scope.paramsObj.backToOption+"}}";
+$scope.backTo = $scope.paramsObj.goBackTo+"("+$scope.parmobj +")";
+}
+
         PropertiesFactory.get(function(result) {
             $scope.properties = result;
         });
